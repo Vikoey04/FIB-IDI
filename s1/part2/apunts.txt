@@ -1,0 +1,3 @@
+
+
+GLSL módulo no se hace con %, es con la funcion mod()
