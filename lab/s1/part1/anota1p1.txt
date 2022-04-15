@@ -1,0 +1,31 @@
+Anotacions Sessio1 part1
+
+Per a cada model -> generar un VAO
+Les dades dels vertexs s'han de passar a la GFX card guardats en VBO
+Pintarem els VAOs
+
+1. Crear en gpu/opengl un VAO
+    GLuint VAO1; //var on guardarem l'id del VAO
+
+    // generació de l’identificador
+    glGenVertexArrays (1, &VAO1); //(GLsizei n, GLuint *arrays) 
+        n -> nombre de VAOs a generar
+        arrays -> vector de GLuint on els noms dels VAO generats es retornen
+
+    // activació del VAO
+    glBindVertexArray (VAO1); //(GLuint array)
+        array -> nom del VAO a activar
+
+    CREAR VBO:
+        // variable on guardarem l’identificador del VBO
+        GLuint VBO1; 
+
+        // generació de l’identificador : Genera n identificadors per a VBOs i els retorna a buffers
+        glGenBuffers (1, &VBO1); //(GLsizei n, GLuint *buffers)
+            n : nombre de VBOs a generar
+            buffers : vector de Gluint on els noms dels VBO generats es retornen
+
+        // activació del VBO : Activa el VBO identificat per buffer
+        glBindBuffer (GL_ARRAY_BUFFER, VBO1); //(GLenum target, GLuint buffer)
+            target : tipus de buffer de la GPU que s’usarà ( GL_ARRAY_BUFFER , …)
+            buffer : nom del VBO a activar
