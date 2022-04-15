@@ -4,6 +4,11 @@
 #include <QOpenGLShaderProgram>
 #include "glm/glm.hpp"
 
+#include <QKeyEvent>
+#include "glm/gtc/matrix_transform.hpp"
+
+#define GLM_FORCE_RADIANS
+
 class MyGLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core
 {
   Q_OBJECT
@@ -23,12 +28,20 @@ class MyGLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core
     // resize - Es cridat quan canvia la mida del widget
     virtual void resizeGL (int width, int height);  
 
+    // Per tractar events de tecles
+    virtual void keyPressEvent(QKeyEvent *e);
+
   private:
     void creaBuffers ();
     void carregaShaders ();
+    void modelTransform();
+
     
     // attribute locations
-    GLuint vertexLoc;
+    GLuint vertexLoc, vertexCol, transLoc, rotLoc;
+
+    float tx, ty, rotacio;
+    //tractem rotacio en Radiants
     
     // Program
     QOpenGLShaderProgram *program;
