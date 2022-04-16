@@ -128,8 +128,9 @@ void MyGLWidget::carregaShaders()
 void MyGLWidget::modelTransform() {
   rotacio += M_PI/4;
   glm::mat4 TG(1.0); // Matriu de transformació, inicialitzada a la identitat
+  TG = glm::scale(TG, glm::vec3(scl, scl, scl));
+  TG = glm::translate(TG, glm::vec3(tx, ty, 0));
   TG = glm::rotate(TG, rotacio, glm::vec3(0.0, 0.0, 1.0));
-  TG = glm::translate (TG, glm::vec3(tx, ty, 0));
   glUniformMatrix4fv (transLoc, 1, GL_FALSE, &TG[0][0]);
 }
 
@@ -153,6 +154,16 @@ void MyGLWidget::keyPressEvent(QKeyEvent *e) {
 
       case Qt::Key_Down:
         ty -= 0.1;
+        modelTransform();
+        break;
+
+      case Qt::Key_S:
+        scl -= 0.1;
+        modelTransform();
+        break;
+
+      case Qt::Key_D:
+        scl += 0.1;
         modelTransform();
         break;
 

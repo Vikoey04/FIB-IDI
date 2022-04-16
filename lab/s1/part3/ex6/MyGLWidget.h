@@ -34,16 +34,15 @@ class MyGLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core
   private:
     void creaBuffers ();
     void carregaShaders ();
-    void modelTransform();
+    void modelTransform1();
+    void modelTransform2();
 
     
     // attribute locations
-    GLuint vertexLoc, vertexCol, transLoc;
+    GLuint vertexLoc, vertexCol, transLoc, varLoc;
 
-    float tx = 0.0;
-    float ty = 0.0;
-    float rotacio = 0.0;
-    //tractem rotacio en Radiants
+    float rotT1 = 0.0; //en Radiants
+    float rotT2 = 0.0; //en Radiants
     
     // Program
     QOpenGLShaderProgram *program;

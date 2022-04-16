@@ -28,6 +28,9 @@ class MyGLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core
     // resize - Es cridat quan canvia la mida del widget
     virtual void resizeGL (int width, int height);  
 
+    // Per tractar events de moviment de mouse
+    virtual void mouseMoveEvent(QMouseEvent *e);
+
     // Per tractar events de tecles
     virtual void keyPressEvent(QKeyEvent *e);
 
@@ -38,12 +41,15 @@ class MyGLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core
 
     
     // attribute locations
-    GLuint vertexLoc, vertexCol, transLoc;
+    GLuint vertexLoc, vertexCol, transLoc, varLoc;
 
     float tx = 0.0;
     float ty = 0.0;
-    float rotacio = 0.0;
-    //tractem rotacio en Radiants
+    float rotacio = 0.0; //en Radiants
+    float scl_x = 0.5;
+    float scl_y = 0.5;
+    float rx = 0.0;
+    float ry = 0.0;
     
     // Program
     QOpenGLShaderProgram *program;

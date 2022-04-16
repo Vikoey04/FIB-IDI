@@ -38,12 +38,12 @@ class MyGLWidget : public QOpenGLWidget, protected QOpenGLFunctions_3_3_Core
 
     
     // attribute locations
-    GLuint vertexLoc, vertexCol, transLoc;
+    GLuint vertexLoc, vertexCol, transLoc, varLoc;
 
     float tx = 0.0;
     float ty = 0.0;
-    float rotacio = 0.0;
-    //tractem rotacio en Radiants
+    float rotacio = 0.0; //en Radiants
+    float scl = 0.5;
     
     // Program
     QOpenGLShaderProgram *program;

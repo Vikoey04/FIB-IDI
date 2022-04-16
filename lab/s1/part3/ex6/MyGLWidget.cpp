@@ -32,12 +32,18 @@ void MyGLWidget::paintGL ()
 //  glViewport (0, 0, ample, alt);
   glClear (GL_COLOR_BUFFER_BIT);  // Esborrem el frame-buffer
 
-  //modelTransform();
-
+  glViewport (0, 0, ample/2, alt/2);
   // Activem array VAO1 i pintem
+  modelTransform1();
   glBindVertexArray(VAO1);
   glDrawArrays(GL_TRIANGLES, 0, 3);
+  glBindVertexArray(0);
 
+  glViewport (ample/2, alt/2, ample/2, alt/2);
+  // Activem array VAO1 i pintem
+  modelTransform2();
+  glBindVertexArray(VAO1);
+  glDrawArrays(GL_TRIANGLES, 0, 3);
   glBindVertexArray(0);
 }
 
@@ -125,35 +131,26 @@ void MyGLWidget::carregaShaders()
   glUniformMatrix4fv (transLoc, 1, GL_FALSE, &TG[0][0]);
 }
 
-void MyGLWidget::modelTransform() {
-  rotacio += M_PI/4;
+void MyGLWidget::modelTransform1() {
   glm::mat4 TG(1.0); // Matriu de transformació, inicialitzada a la identitat
-  TG = glm::rotate(TG, rotacio, glm::vec3(0.0, 0.0, 1.0));
-  TG = glm::translate (TG, glm::vec3(tx, ty, 0));
+  TG = glm::rotate(TG, rotT1, glm::vec3(0.0, 0.0, 1.0));
+  TG = glm::scale(TG, glm::vec3(0.5, 0.5, 0.0));
+  glUniformMatrix4fv (transLoc, 1, GL_FALSE, &TG[0][0]);
+}
+
+void MyGLWidget::modelTransform2() {
+  glm::mat4 TG(1.0); // Matriu de transformació, inicialitzada a la identitat
+  TG = glm::rotate(TG, rotT2, glm::vec3(0.0, 0.0, 1.0));
+  TG = glm::scale(TG, glm::vec3(0.5, 0.5, 0.0));
   glUniformMatrix4fv (transLoc, 1, GL_FALSE, &TG[0][0]);
 }
 
 void MyGLWidget::keyPressEvent(QKeyEvent *e) {
   makeCurrent(); // fa actiu el nostre context d'OpenGL
   switch( e->key() ) {
-      case Qt::Key_Left:
-        tx -= 0.1;
-        modelTransform();
-        break;
-      
-      case Qt::Key_Right:
-        tx += 0.1;
-        modelTransform();
-        break;
-
-      case Qt::Key_Up:
-        ty += 0.1;
-        modelTransform();
-        break;
-
-      case Qt::Key_Down:
-        ty -= 0.1;
-        modelTransform();
+      case Qt::Key_P:
+        rotT1 += M_PI/6;
+        rotT2 -= M_PI/6;
         break;
 
       default: e->ignore(); //propagar al pare

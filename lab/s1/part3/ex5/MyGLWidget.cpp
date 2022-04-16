@@ -126,33 +126,49 @@ void MyGLWidget::carregaShaders()
 }
 
 void MyGLWidget::modelTransform() {
-  rotacio += M_PI/4;
   glm::mat4 TG(1.0); // Matriu de transformació, inicialitzada a la identitat
+  TG = glm::scale(TG, glm::vec3(scl_x, scl_y, 0.0));
+  TG = glm::translate(TG, glm::vec3(tx, ty, 0));
   TG = glm::rotate(TG, rotacio, glm::vec3(0.0, 0.0, 1.0));
-  TG = glm::translate (TG, glm::vec3(tx, ty, 0));
   glUniformMatrix4fv (transLoc, 1, GL_FALSE, &TG[0][0]);
+}
+
+void MyGLWidget::mouseMoveEvent(QMouseEvent *e) {
+  makeCurrent();
+  float rx_new = e->x();
+  float ry_new = e->y();
+  
+  if (rx_new > rx) scl_x += 0.01;
+  else if (rx_new < rx) scl_x -= 0.01;
+  if (ry_new > ry) scl_y += 0.01;
+  else if (ry_new < ry) scl_y -= 0.01;
+  modelTransform();
+  
+  update();
+  rx = rx_new;
+  ry = ry_new;
 }
 
 void MyGLWidget::keyPressEvent(QKeyEvent *e) {
   makeCurrent(); // fa actiu el nostre context d'OpenGL
   switch( e->key() ) {
       case Qt::Key_Left:
-        tx -= 0.1;
+        tx -= 0.1; rotacio += M_PI/4;
         modelTransform();
         break;
       
       case Qt::Key_Right:
-        tx += 0.1;
+        tx += 0.1; rotacio += M_PI/4;
         modelTransform();
         break;
 
       case Qt::Key_Up:
-        ty += 0.1;
+        ty += 0.1; rotacio += M_PI/4;
         modelTransform();
         break;
 
       case Qt::Key_Down:
-        ty -= 0.1;
+        ty -= 0.1; rotacio += M_PI/4;
         modelTransform();
         break;
 
