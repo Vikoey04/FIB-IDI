@@ -1,6 +1,6 @@
 // MyGLWidget.h
 #include "BL2GLWidget.h"
-#include "model.h"
+#include "./Model/model.h"
 
 class MyGLWidget : public BL2GLWidget {
   Q_OBJECT
@@ -10,37 +10,37 @@ class MyGLWidget : public BL2GLWidget {
     ~MyGLWidget();
 
   protected:
-    // initializeGL - Inicialitzacions del contexte grafic
-    virtual void initializeGL();
+    virtual void initializeGL(); //De BL2, la reescribim
 
-    // paintGL - Cridat cada cop que cal refrescar la finestra
-    // Tot el que es dibuixa es dibuixa aqui
-    virtual void paintGL();
+    virtual void paintGL(); //De BL2, l'allarguem per davant
+
+    virtual void creaBuffers(); //De BL2, la reescribim
+
+    virtual void carregaShaders(); //De BL2, l'allarguem per darrere
 
   private:
     int printOglError(const char file[], int line, const char func[]);
 
-    void createBuffers();
-    void carregaShaders();
-    //void modelTransform();
-    void projectTransform();
-    void viewTransform ();
-
-    // attribute locations
-
+    void ini_camera();
+    void projectTransform(); // Calcul de transformació de proj i enviar uniform a la mat cap al VS
+    void viewTransform();
+    
 
     // uniform locations
     GLuint projLoc, viewLoc;
 
-    // VAO i VBO names
-    GLuint VAO_HomerProves;
-    //GLuint VBO_HomerProvesPos;
+    // VAO names
+    GLuint VAO_Homer;
 
-    // Program
-    QOpenGLShaderProgram *program;
+    // VBO names
+    GLuint VBO_HomerPos, VBO_HomerCol;
 
-    // internal vars
+    // add vars
+    GLfloat FOV, ra, znear, zfar;
 
+    glm::vec3 OBS;
+    glm::vec3 VRP;
+    glm::vec3 UP;
 
-    Model HomerProves;
+    Model homer;
 };

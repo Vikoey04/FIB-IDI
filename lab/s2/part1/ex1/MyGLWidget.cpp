@@ -7,7 +7,7 @@
 #define CHECK() printOglError(__FILE__, __LINE__,__FUNCTION__)
 #define DEBUG() std::cout << __FILE__ << " " << __LINE__ << " " << __FUNCTION__ << std::endl;
 
-int MyGLWidget::printOglError(const char file[], int line, const char func[])
+int MyGLWidget::printOglError(const char file[], int line, const char func[]) 
 {
     GLenum glErr;
     int    retCode = 0;
@@ -22,7 +22,7 @@ int MyGLWidget::printOglError(const char file[], int line, const char func[])
         case 0x501:
             error = "GL_INVALID_VALUE";
             break;
-        case 0x502:
+        case 0x502: 
             error = "GL_INVALID_OPERATION";
             break;
         case 0x503:
@@ -49,18 +49,26 @@ int MyGLWidget::printOglError(const char file[], int line, const char func[])
 MyGLWidget::~MyGLWidget() {
 }
 
+// Allarguem carregaShaders de BL2 per darrere
 void MyGLWidget::carregaShaders() {
-  BL2GLWidget::carregaShaders();
-  projLoc = glGetUniformLocation (program -> programId(), "proj");
+    BL2GLWidget::carregaShaders();
+    projLoc = glGetUniformLocation(program -> programId(), "proj");
 }
 
+// Calcul de transformació de proj i enviar uniform a la mat cap al VS
 void MyGLWidget::projectTransform() {
-  // glm::perspective (FOV en rad, RA window, znear, zfar)
-  glm::mat4 Proj = glm::perspective (float(M_PI)/2.0f, 1.0f, 0.4f, 3.0f);
-  glUniformMatrix4fv (projLoc, 1, GL_FALSE, &Proj[0][0]);
+    // glm::perspective(FOV en rad, RA window, znear, zfar)
+
+    glm::mat4 Proj = glm::perspective(float(M_PI)/2.0f, 1.0f, 0.4f, 3.0f);
+    glUniformMatrix4fv(projLoc, 1, GL_FALSE, &Proj[0][0]);
 }
 
+// Allarguem paintGL de BL2 per davant
 void MyGLWidget::paintGL() {
-  projectTransform();
-  BL2GLWidget::paintGL();
+    projectTransform();
+    BL2GLWidget::paintGL();
 }
+
+
+
+

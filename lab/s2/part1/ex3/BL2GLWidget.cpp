@@ -16,7 +16,7 @@ BL2GLWidget::~BL2GLWidget ()
 void BL2GLWidget::initializeGL ()
 {
   // Cal inicialitzar l'ús de les funcions d'OpenGL
-  initializeOpenGLFunctions();
+  initializeOpenGLFunctions();  
 
   glClearColor(0.5, 0.7, 1.0, 1.0); // defineix color de fons (d'esborrat)
   carregaShaders();
@@ -24,19 +24,19 @@ void BL2GLWidget::initializeGL ()
   escala = 1.0f;
 }
 
-void BL2GLWidget::paintGL ()
+void BL2GLWidget::paintGL () 
 {
 // En cas de voler canviar els paràmetres del viewport, descomenteu la crida següent i
 // useu els paràmetres que considereu (els que hi ha són els de per defecte)
 //  glViewport (0, 0, ample, alt);
-
+  
   // Esborrem el frame-buffer
   glClear (GL_COLOR_BUFFER_BIT);
 
   // Carreguem la transformació de model
   modelTransform ();
 
-  // Activem el VAO per a pintar la caseta
+  // Activem el VAO per a pintar la caseta 
   glBindVertexArray (VAO_Casa);
 
   // pintem
@@ -45,7 +45,7 @@ void BL2GLWidget::paintGL ()
   glBindVertexArray (0);
 }
 
-void BL2GLWidget::modelTransform ()
+void BL2GLWidget::modelTransform () 
 {
   // Matriu de transformació de model
   glm::mat4 transform (1.0f);
@@ -53,7 +53,7 @@ void BL2GLWidget::modelTransform ()
   glUniformMatrix4fv(transLoc, 1, GL_FALSE, &transform[0][0]);
 }
 
-void BL2GLWidget::resizeGL (int w, int h)
+void BL2GLWidget::resizeGL (int w, int h) 
 {
 // Aquest codi és necessari únicament per a MACs amb pantalla retina.
 #ifdef __APPLE__
@@ -67,7 +67,7 @@ void BL2GLWidget::resizeGL (int w, int h)
 #endif
 }
 
-void BL2GLWidget::keyPressEvent(QKeyEvent* event)
+void BL2GLWidget::keyPressEvent(QKeyEvent* event) 
 {
   makeCurrent();
   switch (event->key()) {
@@ -84,7 +84,7 @@ void BL2GLWidget::keyPressEvent(QKeyEvent* event)
   update();
 }
 
-void BL2GLWidget::creaBuffers ()
+void BL2GLWidget::creaBuffers () 
 {
   // Dades de la caseta
   // Dos VBOs, un amb posició i l'altre amb color
@@ -98,7 +98,7 @@ void BL2GLWidget::creaBuffers ()
 	glm::vec3( 0.5,  0.0, -0.5),
 	glm::vec3( 0.0,  0.6, -0.5),
 	glm::vec3(-0.5,  0.0, -0.5)
-  };
+  }; 
   glm::vec3 color[9] = {
 	glm::vec3(1,0,0),
 	glm::vec3(0,1,0),
@@ -159,3 +159,4 @@ void BL2GLWidget::carregaShaders()
   // Uniform locations
   transLoc = glGetUniformLocation(program->programId(), "TG");
 }
+
