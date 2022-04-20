@@ -50,6 +50,36 @@ MyGLWidget::~MyGLWidget()
 
 }
 
+// Reescribim
+void MyGLWidget::iniEscena()
+{
+    pintaPilota = true;
+
+    radiEscena = sqrt(153);
+    centreEscena = glm::vec3(0,2,0);
+
+    altPorter = 4;
+    posPorter = glm::vec3(9.0, 0.0, 0.0);  // posició inicial del porter
+    posPilota = glm::vec3(7.0, 0.0, 0.0);  // posició inicial de la pilota
+    dirInicialPilota();    // direcció inicial de la pilota
+}
+
+
+// Reescribim
+void MyGLWidget::iniCamera(){
+
+  obs = glm::vec3(14, 4, 14);
+  vrp = glm::vec3(0, 2, 0);
+  up = glm::vec3(0, 1, 0);
+  fov = 2*asin(1./2.);
+  ra  = 1.0;
+  znear =  radiEscena;
+  zfar  = 3*radiEscena;
+
+  viewTransform();
+  projectTransform();
+}
+
 // Reescrbim paintGL de LL2
 void MyGLWidget::paintGL ()
 {
@@ -65,9 +95,11 @@ void MyGLWidget::paintGL ()
   glDrawArrays(GL_TRIANGLES, 0, patr.faces().size()*3);
 
   // Pilota
-  glBindVertexArray (VAO_Pil);
-  pilTransform();
-  glDrawArrays(GL_TRIANGLES, 0, pil.faces().size()*3);
+  if (pintaPilota) {
+    glBindVertexArray (VAO_Pil);
+    pilTransform();
+    glDrawArrays(GL_TRIANGLES, 0, pil.faces().size()*3);
+  }
 
   // Cub
   glBindVertexArray (VAO_Cub);
@@ -118,9 +150,10 @@ void MyGLWidget::paret3Transform() {
 }
 
 void MyGLWidget::viewTransform() {
-    glm::mat4 VM(1.0f);
-    VM = glm::translate(VM, glm::vec3(0, 0, -26.67));
+    glm::mat4 VM(1.0f); //-26.67
+    VM = glm::translate(VM, glm::vec3(0, 0, -2*radiEscena));
     VM = glm::rotate(VM, (float)M_PI/4, glm::vec3(1, 0, 0));
+    VM = glm::translate(VM, -vrp);
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &VM[0][0]);
 }
 
@@ -130,13 +163,18 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event)
   makeCurrent();
   switch (event->key()) {
     case Qt::Key_Up: { // moviment de la pilota
-      if (posPilota[0] == 7.0)
-        mourePilota ();
-      break;
+        if (posPilota[0] == 7.0)
+            mourePilota ();
+        break;
     }
     case Qt::Key_I: { // reinicia posició pilota
-      iniciPilota ();
-      break;
+        iniciPilota ();
+        break;
+    }
+    case Qt::Key_R: {
+        iniCamera();
+        iniEscena();
+        break;
     }
 
     case Qt::Key_Left: {
@@ -169,4 +207,17 @@ void MyGLWidget::mouPorterRight() {
     glm::mat4 TG(1.0f);
     TG = glm::translate(TG, glm::vec3(0, 0, -0.5));
     glUniformMatrix4fv(transLoc, 1, GL_FALSE, &TG[0][0]);
+}
+
+// Allarguem
+void MyGLWidget::tractamentGol() {
+    LL2GLWidget::tractamentGol();
+
+    pintaPilota = false;
+}
+
+// Allarguem
+void MyGLWidget::dirInicialPilota() {
+    pintaPilota = true;
+    LL2GLWidget::dirInicialPilota();
 }

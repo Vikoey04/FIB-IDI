@@ -10,6 +10,9 @@ class MyGLWidget : public LL2GLWidget {
     ~MyGLWidget();
 
   protected:
+    virtual void iniEscena(); // De LL2, la reescribim
+    virtual void iniCamera(); // De LL2, la reescribim
+
     virtual void paintGL(); // De LL2, la reescribim
 
     virtual void patrTransform(); //De LL2, la reescribim
@@ -17,6 +20,11 @@ class MyGLWidget : public LL2GLWidget {
     virtual void viewTransform(); // De LL2, la reescribim
 
     virtual void keyPressEvent(QKeyEvent* event); // De LL2, la reescribim
+
+    virtual void tractamentGol(); // De LL2, l'allarguem per darrere
+
+    virtual void dirInicialPilota(); // De LL2, l'allarguem per davant
+    
 
   private:
     int printOglError(const char file[], int line, const char func[]);
@@ -27,4 +35,6 @@ class MyGLWidget : public LL2GLWidget {
 
     void mouPorterLeft();
     void mouPorterRight();
+
+    bool pintaPilota;
 };
