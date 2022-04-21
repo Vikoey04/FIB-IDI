@@ -17,7 +17,11 @@ class MyGLWidget : public LL2GLWidget {
 
     virtual void patrTransform(); //De LL2, la reescribim
 
+    virtual void projectTransform(); // De LL2, la reescribim
+
     virtual void viewTransform(); // De LL2, la reescribim
+
+    virtual void mouseMoveEvent(QMouseEvent *e); // De LL2, la reescribim
 
     virtual void keyPressEvent(QKeyEvent* event); // De LL2, la reescribim
 

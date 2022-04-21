@@ -76,6 +76,9 @@ void MyGLWidget::iniCamera(){
   znear =  radiEscena;
   zfar  = 3*radiEscena;
 
+  factorAngleX = (float)M_PI/4;
+  factorAngleY = 0;
+
   viewTransform();
   projectTransform();
 }
@@ -149,12 +152,44 @@ void MyGLWidget::paret3Transform() {
     glUniformMatrix4fv(transLoc, 1, GL_FALSE, &TG[0][0]);
 }
 
+// Reescribim
+void MyGLWidget::projectTransform ()
+{
+  glm::mat4 Proj(1.0f);
+  Proj = glm::perspective (fov, ra, znear, zfar);
+  glUniformMatrix4fv (projLoc, 1, GL_FALSE, &Proj[0][0]);
+}
+
+
 void MyGLWidget::viewTransform() {
     glm::mat4 VM(1.0f); //-26.67
-    VM = glm::translate(VM, glm::vec3(0, 0, -2*radiEscena));
-    VM = glm::rotate(VM, (float)M_PI/4, glm::vec3(1, 0, 0));
-    VM = glm::translate(VM, -vrp);
+
+    if (cameraPerspectiva) {
+        VM = glm::translate(VM, glm::vec3(0, 0, -2*radiEscena));
+        VM = glm::rotate(VM, factorAngleX, glm::vec3(1, 0, 0));
+        VM = glm::rotate(VM, factorAngleY, glm::vec3(0, 1, 0));
+        VM = glm::translate(VM, -vrp);
+    }
+    else {
+        VM = glm::lookAt();
+    }
     glUniformMatrix4fv(viewLoc, 1, GL_FALSE, &VM[0][0]);
+}
+
+// Reescribim
+void MyGLWidget::mouseMoveEvent(QMouseEvent *e) {
+	makeCurrent();
+	
+	if(e->x() > xClick) factorAngleY -= 0.03;
+	else if(e->x() < xClick) factorAngleY += 0.03;
+	
+	if(e->y() > yClick) factorAngleX -= 0.03;
+	else if(e->y() < yClick) factorAngleX += 0.03;
+	
+	xClick = e->x();
+	yClick = e->y();
+	viewTransform();
+	update();
 }
 
 // Reescribim keyPressEvent de LL2
@@ -171,9 +206,23 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event)
         iniciPilota ();
         break;
     }
+
     case Qt::Key_R: {
         iniCamera();
         iniEscena();
+        break;
+    }
+    case Qt::Key_C: {
+
+        break;
+    }
+
+    case Qt::Key_W: {
+        
+        break;
+    }
+    case Qt::Key_S: {
+        
         break;
     }
 
