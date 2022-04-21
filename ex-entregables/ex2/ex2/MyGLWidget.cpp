@@ -88,6 +88,32 @@ void MyGLWidget::paintGL ()
   glBindVertexArray (0);
 }
 
+void MyGLWidget::resizeGL (int w, int h) 
+{
+// Aquest codi és necessari únicament per a MACs amb pantalla retina.
+#ifdef __APPLE__
+  GLint vp[4];
+  glGetIntegerv (GL_VIEWPORT, vp);
+  ample = vp[2];
+  alt = vp[3];
+#else
+  ample = w;
+  alt = h;
+#endif
+  ra = float(ample)/float(alt);
+  /*
+  factorAngleY = M_PI / ample;
+  factorAngleX = M_PI / alt;
+  */
+  projectTransform();
+  if (ra < 1.) {
+      fov = 2*atan(tan(fov/2)/ra);
+  }
+  else {
+      fov = 2*asin(1./2.);
+  }
+}
+
 // Reescribim keyPressEvent de LL2
 void MyGLWidget::keyPressEvent(QKeyEvent* event) 
 {
@@ -99,18 +125,21 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event)
         break;
     }
     case Qt::Key_I: { // Reinicia posició pilota
-        pintaPilota = true;
         iniciPilota ();
         break;
     }
     case Qt::Key_R: { // Reiniciar escena, camera i mida Patricio
+        //resizeGL(width(), height());
+        ra = float(ample)/float(alt);
         iniciPilota();
-        iniCamera();
         iniEscena();
+        iniCamera();
         break;
     }
     case Qt::Key_C: { // Canvi de camera
-        if (cameraPerspectiva) cameraPerspectiva = false;
+        if (cameraPerspectiva) {
+            cameraPerspectiva = false;
+        }
         else cameraPerspectiva = true;
         viewTransform();
         projectTransform();
@@ -127,17 +156,11 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event)
         break;
     }
     case Qt::Key_Left: { // Move Patricio LEFT
-        if (posPorter[2] != 5) {
-            posPorter[2] += 0.5;
-            mouPorterLeft();
-        }
+        mouPorterLeft();
         break;
     }
     case Qt::Key_Right: { // Move Patricio RIGHT
-        if (posPorter[2] != -5) {
-            posPorter[2] -= 0.5;
-            mouPorterRight();
-        }
+        mouPorterRight();
         break;
     }
     default: event->ignore(); break;
@@ -194,7 +217,7 @@ void MyGLWidget::iniCamera()
     factorAngleY = 0;
     
     fov = 2*asin(1./2.);
-    ra  = 1.0;
+    ra  = width()/height();
     znear =  radiEscena; //en les dues cameres
     zfar  = 3*radiEscena; //en les dues cameres
 
@@ -206,7 +229,7 @@ void MyGLWidget::iniCamera()
 
 // Reescribim viewTransform de LL2
 void MyGLWidget::viewTransform() {
-    glm::mat4 VM(1.0f); //-26.67
+    glm::mat4 VM(1.0f);
 
     if (cameraPerspectiva) {
         VM = glm::translate(VM, glm::vec3(0, 0, -2*radiEscena));
@@ -228,7 +251,13 @@ void MyGLWidget::projectTransform ()
       Proj = glm::perspective (fov, ra, znear, zfar);
   }
   else {
-      Proj = glm::ortho (-10.5f, 10.5f, -10.5f, 10.5f, znear, zfar);
+      if (ra <= 1.) {
+          Proj = glm::ortho (-radiEscena, radiEscena, -radiEscena/ra, radiEscena/ra, znear, zfar);
+      }
+      else {
+          Proj = glm::ortho (-radiEscena*ra, radiEscena*ra, -radiEscena, radiEscena, znear, zfar);
+      }
+      
   }
   glUniformMatrix4fv (projLoc, 1, GL_FALSE, &Proj[0][0]);
 }
@@ -259,9 +288,9 @@ void MyGLWidget::tractamentGol() {
 }
 
 // Allarguem
-void MyGLWidget::dirInicialPilota() {
+void MyGLWidget::iniciPilota() {
     pintaPilota = true;
-    LL2GLWidget::dirInicialPilota();
+    LL2GLWidget::iniciPilota();
 }
 
 // ############# NOVES FUNCIONS #################
@@ -287,13 +316,19 @@ void MyGLWidget::paret3Transform() {
 }
 
 void MyGLWidget::mouPorterLeft() {
-    glm::mat4 TG(1.0f);
-    TG = glm::translate(TG, glm::vec3(0, 0, 0.5));
-    glUniformMatrix4fv(transLoc, 1, GL_FALSE, &TG[0][0]);
+    if (posPorter[2] > -(7-(altPorter/2) )) {
+        posPorter[2] -= 0.5;
+        glm::mat4 TG(1.0f);
+        TG = glm::translate(TG, glm::vec3(0, 0, 0.5));
+        glUniformMatrix4fv(transLoc, 1, GL_FALSE, &TG[0][0]);
+    }
 }
 
 void MyGLWidget::mouPorterRight() {
-    glm::mat4 TG(1.0f);
-    TG = glm::translate(TG, glm::vec3(0, 0, -0.5));
-    glUniformMatrix4fv(transLoc, 1, GL_FALSE, &TG[0][0]);
+    if (posPorter[2] < 7-(altPorter/2)) {
+        posPorter[2] += 0.5;
+        glm::mat4 TG(1.0f);
+        TG = glm::translate(TG, glm::vec3(0, 0, -0.5));
+        glUniformMatrix4fv(transLoc, 1, GL_FALSE, &TG[0][0]);
+    }
 }
