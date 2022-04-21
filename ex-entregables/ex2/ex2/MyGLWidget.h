@@ -10,23 +10,21 @@ class MyGLWidget : public LL2GLWidget {
     ~MyGLWidget();
 
   protected:
+    virtual void paintGL(); // De LL2, la reescribim
+
+    virtual void keyPressEvent(QKeyEvent* event); // De LL2, la reescribim
+    virtual void mouseMoveEvent(QMouseEvent *e); // De LL2, la reescribim
+
     virtual void iniEscena(); // De LL2, la reescribim
     virtual void iniCamera(); // De LL2, la reescribim
 
-    virtual void paintGL(); // De LL2, la reescribim
-
+    virtual void viewTransform(); // De LL2, la reescribim
+    virtual void projectTransform(); // De LL2, la reescribim
+    
     virtual void patrTransform(); //De LL2, la reescribim
 
-    virtual void projectTransform(); // De LL2, la reescribim
-
-    virtual void viewTransform(); // De LL2, la reescribim
-
-    virtual void mouseMoveEvent(QMouseEvent *e); // De LL2, la reescribim
-
-    virtual void keyPressEvent(QKeyEvent* event); // De LL2, la reescribim
-
+    virtual void rebotaParets(); // De LL2, la reescribim
     virtual void tractamentGol(); // De LL2, l'allarguem per darrere
-
     virtual void dirInicialPilota(); // De LL2, l'allarguem per davant
     
 
@@ -40,5 +38,6 @@ class MyGLWidget : public LL2GLWidget {
     void mouPorterLeft();
     void mouPorterRight();
 
-    bool pintaPilota;
+    bool pintaPilota; //Indica si s'ha de pintar la pilota o NO
+    bool cameraPerspectiva; //Indica si està en càmera Perspectiva o Ortogonal
 };

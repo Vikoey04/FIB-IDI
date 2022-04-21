@@ -154,6 +154,7 @@ void LL2GLWidget::iniciPilota()
 
 void LL2GLWidget::rebotaParets() 
 {
+  
 } 
 
 void LL2GLWidget::tractamentGol()
