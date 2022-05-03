@@ -1,0 +1,36 @@
+
+Una funcio per cada parametre en el vertex shader
+
+Calcular L, N i normalitzarlos, i passarlos a la funció
+El mateix amb la especularitat
+
+Per calcular el vector -> diferencia entre 2 punts
+
+Model empiric
+  Propietats del material i vector normal (per cada vertex)
+
+  Color de la llum ambient (suposem que existeix en la nostra escena)
+
+  Per a cada focus de llum -> posició i color
+
+  Els sumatoris són perquè hi poden haver diversos focus de llum
+
+  Posició de l'observador (si treballen en SCO (0,0,0) )
+
+### En GLSL es com el "llenguatge" de Vertex Shader i Fragment Shader
+
+EX1
+    Rluz * Rmaterial = Rresultado
+
+    vec3*vec3 = vec3 componente a componente
+
+    L -> del vertice al foco de luz
+
+    colRes = colorluz * matdifuso * ....
+
+
+EX2
+    calculo R i V
+    L va del vertice al foco de luz, como lo queremos alreves usamos -L
+
+    .xyz -> a partir de un vec4 nos da un vec3 con las 3 primeras componentes
