@@ -54,14 +54,6 @@ vec3 Especular (vec3 NormSCO, vec3 L, vec4 vertSCO, vec3 colFocus)
     return (matspec * colFocus * shine);
 }
 
-vec3 Lambert() {
-  return Ambient()+Difus(NSCO, L, colorFocus);
-}
-
-vec3 Phong() {
-  return Ambient()+Difus(NSCO, L, colorFocus)+Especular(NSCO, L, vec4(vertSCO, 1.0), colorFocus);
-}
-
 void main()
 {
     // Passem posició vertex a SCO
@@ -83,9 +75,11 @@ void main()
 
     // fcolor = matdiff;
 
-    fcolor = Lambert(); //EXERCICI 1
+    //EXERCICI 1 - Lambert
+    // fcolor = Ambient()+Difus(NSCO, L, colorFocus);
 
-    fcolor = Phong();   //EXERCICI 2
+    //EXERCICI 2 - Phong
+    // fcolor = Ambient()+Difus(NSCO, L, colorFocus)+Especular(NSCO, L, vec4(vertSCO, 1.0), colorFocus);
 
     gl_Position = proj * view * TG * vec4 (vertex, 1.0);
 }
