@@ -80,27 +80,32 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
 
 void MyGLWidget::initializeGL() {
   BL3GLWidget::initializeGL();
-  colFocusLoc = glGetUniformLocation (program->programId(), "colorFocus");
-  llumAmientLoc = glGetUniformLocation (program->programId(), "llumAmbient");
-  posFocusLoc = glGetUniformLocation (program->programId(), "posFocus");
+
+  // Uniforms del focus
+  posFocusLoc     = glGetUniformLocation (program->programId(), "posFocus");
+  colFocusLoc     = glGetUniformLocation (program->programId(), "colFocus");
+  llumAmbientLoc  = glGetUniformLocation (program->programId(), "llumAmbient");
+
   posicioFocus();
   colorFocus();
   llumAmbient();
+
 }
 
 void MyGLWidget::posicioFocus()
 {
-  glUniform3fv (posFocus, 1, &posFocus);
+  glm::vec3 posF = glm::vec3(1,1,1);
+  glUniform3fv (posFocusLoc, 1, &posF[0]);
 }
 
 void MyGLWidget::colorFocus()
 {
   glm::vec3 colF = glm::vec3(0.8, 0.8, 0.8);
-  glUniform3fv (colF, 1, &colF);
+  glUniform3fv (colFocusLoc, 1, &colF[0]);
 }
 
 void MyGLWidget::llumAmbient()
 {
   glm::vec3 llum = glm::vec3(0.2, 0.2, 0.2);
-  glUniform3fv (llum, 1, &llum);
+  glUniform3fv (llumAmbientLoc, 1, &llum[0]);
 }

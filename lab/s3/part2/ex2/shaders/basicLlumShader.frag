@@ -4,16 +4,16 @@
 in vec4 vertexFS;
 in vec3 normalFS;
 
-in vec3 matambFS;
-in vec3 matdiffFS;
-in vec3 matspecFS;
+in vec3  matambFS;
+in vec3  matdiffFS;
+in vec3  matspecFS;
 in float matshinFS;
 
 out vec4 FragColor;
 
-uniform vec3 colorFocus;
-uniform vec3 llumAmbient;
 uniform vec3 posFocus;
+uniform vec3 colFocus;
+uniform vec3 llumAmbient;
 
 vec3 Ambient() {
     return llumAmbient * matambFS;
@@ -26,11 +26,11 @@ vec3 Difus (vec3 NormSCO, vec3 L, vec3 colFocus)
     vec3 colRes = vec3(0);
     // Càlcul component difusa, si n'hi ha
     if (dot (L, NormSCO) > 0)
-      colRes = colFocus * matdiffFS * dot (L, NormSCO);llumAmbient = vec3(0,0,0);
+      colRes = colFocus * matdiffFS * dot (L, NormSCO);//llumAmbient = vec3(0,0,0);
     return (colRes);
 }
 
-vec3 Especular (vec3 NormSCO, vec3 L, vec4 vertSCO, vec3 colFocus)
+vec3 Especular (vec3 NormSCO, vec3 L, vec4 vertSCO, vec3 colorFocus)
 {
     // Fixeu-vos que SOLS es retorna el terme especular!
     // Assumim que els vectors estan normalitzats
@@ -47,16 +47,18 @@ vec3 Especular (vec3 NormSCO, vec3 L, vec4 vertSCO, vec3 colFocus)
       return colRes;  // no hi ha component especular
 
     float shine = pow(max(0.0, dot(R, V)), matshinFS);
-    return (matspecFS * colFocus * matshinFS);
+    return (matspecFS * colorFocus * shine);
+    //matshinFS
 }
 
 void main()
 {
-	vec3 Lfragment = normalize(posFocus - vertexFS.xyz);
+	vec3 LF = posFocus - vertexFS.xyz;
+  LF = normalize(LF);
 
-	vec3 normalfragment = normalize(normalFS);
+	vec3 normalF = normalize(normalFS);
 
-	FragColor = vec4(Ambient()+Especular(normalfragment, Lfragment, vertexFS, colorFocus), 1.0);
+  vec3 fcolor = Ambient()+Especular(normalF, LF, vertexFS, colFocus);
 
-	//FragColor = vec4(fcolor,1);
+	FragColor = vec4(fcolor, 1.0);
 }

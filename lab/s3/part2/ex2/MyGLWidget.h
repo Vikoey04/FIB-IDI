@@ -21,5 +21,6 @@ class MyGLWidget : public BL3GLWidget {
     void colorFocus();
     void llumAmbient();
 
-    GLuint llumAmientLoc, colFocusLoc, posFocusLoc;
+    GLuint posFocusLoc, colFocusLoc, llumAmbientLoc;
+    //glm::vec3 posF;
 };
