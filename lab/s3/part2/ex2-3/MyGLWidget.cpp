@@ -69,10 +69,31 @@ void MyGLWidget::mouseMoveEvent(QMouseEvent *e)
 void MyGLWidget::keyPressEvent(QKeyEvent* event) {
   makeCurrent();
   switch (event->key()) {
-  /*case :
-      ...
+    case Qt::Key_F:
+      if (focusDeCamera) { // passem a Focus d'Escena
+        focusDeCamera = false;
+        posF = glm::vec3(1.0, 1.0, 1.0);
+      } else {             // passem a Focus de Camera
+        focusDeCamera = true;
+        posF = glm::vec3(0.0, 0.0, 0.0);
+      }
+      posicioFocus();
       break;
-  */
+    
+    case Qt::Key_K:
+      if (posF.x > -3.0) {
+        posF.x -= 0.1;
+        posicioFocus();
+      }
+      break;
+    
+    case Qt::Key_L:
+      if (posF.x < 3.0) {
+        posF.x += 0.1;
+        posicioFocus();
+      }
+      break;
+  
     default: BL3GLWidget::keyPressEvent(event); break;
   }
   update();
@@ -86,16 +107,26 @@ void MyGLWidget::initializeGL() {
   colFocusLoc     = glGetUniformLocation (program->programId(), "colFocus");
   llumAmbientLoc  = glGetUniformLocation (program->programId(), "llumAmbient");
 
+  focusDeCamera = true;
+  posF = glm::vec3(0.0, 0.0, 0.0);
+
   posicioFocus();
   colorFocus();
   llumAmbient();
-
 }
 
 void MyGLWidget::posicioFocus()
 {
-  glm::vec3 posF = glm::vec3(1,1,1);
-  glUniform3fv (posFocusLoc, 1, &posF[0]);
+  glm::vec3 posFres;
+  if (!focusDeCamera) { // focus d'Escena
+    posFres = View * glm::vec4(posF, 1.0);
+    posFres = glm::vec3(posFres.x, posFres.y, posFres.z);
+  }
+  else {                // focus de Camera
+    posFres = posF;
+  }
+
+  glUniform3fv (posFocusLoc, 1, &posFres[0]);
 }
 
 void MyGLWidget::colorFocus()

@@ -24,13 +24,8 @@ uniform mat4 TG;
 void main()
 {
     // Passem a coords en SCO
-    //vertexFS = normalize( view * TG * vec4(vertex, 1.0) );
-    //normalFS = normalize( inverse(transpose (mat3(view * TG))) * normal );
     vertexFS = view * TG * vec4(vertex, 1.0);
-
-    mat3 NormalMatrix = (inverse(transpose (mat3(view * TG)))); 
-
-    normalFS = NormalMatrix * normal;
+    normalFS = (inverse(transpose (mat3(view * TG)))) * normal; 
 
     matambFS = matamb;
     matdiffFS = matdiff;
