@@ -30,7 +30,7 @@ vec3 Difus (vec3 NormSCO, vec3 L, vec3 colFocus)
     return (colRes);
 }
 
-vec3 Especular (vec3 NormSCO, vec3 L, vec4 vertSCO, vec3 colorFocus)
+vec3 Especular (vec3 NormSCO, vec3 L, vec4 vertSCO, vec3 colFocus)
 {
     // Fixeu-vos que SOLS es retorna el terme especular!
     // Assumim que els vectors estan normalitzats
@@ -47,18 +47,17 @@ vec3 Especular (vec3 NormSCO, vec3 L, vec4 vertSCO, vec3 colorFocus)
       return colRes;  // no hi ha component especular
 
     float shine = pow(max(0.0, dot(R, V)), matshinFS);
-    return (matspecFS * colorFocus * shine);
+    return (matspecFS * colFocus * shine);
     //matshinFS
 }
 
 void main()
 {
-	vec3 LF = posFocus - vertexFS.xyz;
-  LF = normalize(LF);
+	vec3 LFS = normalize(posFocus - vertexFS.xyz);
 
-	vec3 normalF = normalize(normalFS);
+	vec3 NORMnormalFS = normalize(normalFS);
 
-  vec3 fcolor = Ambient()+Especular(normalF, LF, vertexFS, colFocus);
+  vec3 fcolor = Ambient() + Difus(NORMnormalFS, LFS, colFocus) + Especular(NORMnormalFS, LFS, vertexFS, colFocus);
 
 	FragColor = vec4(fcolor, 1.0);
 }

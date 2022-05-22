@@ -27,7 +27,10 @@ void main()
     //vertexFS = normalize( view * TG * vec4(vertex, 1.0) );
     //normalFS = normalize( inverse(transpose (mat3(view * TG))) * normal );
     vertexFS = view * TG * vec4(vertex, 1.0);
-    normalFS = inverse(transpose (mat3(view * TG))) * normal;
+
+    mat3 NormalMatrix = (inverse(transpose (mat3(view * TG)))); 
+
+    normalFS = NormalMatrix * normal;
 
     matambFS = matamb;
     matdiffFS = matdiff;
