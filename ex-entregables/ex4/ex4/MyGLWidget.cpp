@@ -85,3 +85,12 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
   }
   update();
 }
+
+virtual void initializeGL() {
+  LL4GLWidget::initializeGL();
+
+  posFocusLoc = glGetUniformLocation (program->programId(), "posFocus");
+  colFoscusLoc = glGetUniformLocation (program->programId(), "colFocus");
+
+  
+}

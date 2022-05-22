@@ -13,6 +13,9 @@ uniform mat4 TG;
 uniform mat4 Proj;
 uniform mat4 View;
 
+uniform vec3 posFocus;
+uniform vec3 colFocus;
+
 out vec4 FragColor;
 
 
@@ -51,5 +54,12 @@ vec3 Especular (vec3 NormSCO, vec3 L, vec3 vertSCO, vec3 colFocus)
 
 void main()
 {
-    FragColor = vec4(fmatdiff, 1);
+    vec3 L = normalize(posFocus - fvertex);
+
+    vec3 normalFS = normalize(fnormal);
+
+    vec3 fcolor = Ambient() + Difus(normalFS, L, colFocus) + Especular(normalFS, L, fvertex, colFocus);
+
+    FragColor = vec4(fcolor, 1.0);
+    //FragColor = vec4(fmatdiff, 1);
 }

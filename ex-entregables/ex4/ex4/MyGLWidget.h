@@ -9,6 +9,9 @@ class MyGLWidget : public LL4GLWidget {
   protected:
     virtual void mouseMoveEvent(QMouseEvent *e);
     virtual void keyPressEvent(QKeyEvent* event);
+
+    virtual void initializeGL(); // La reescribim de LL4
+
   private:
     int printOglError(const char file[], int line, const char func[]);
 };
