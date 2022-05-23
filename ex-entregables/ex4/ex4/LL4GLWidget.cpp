@@ -100,6 +100,9 @@ void LL4GLWidget::resizeGL (int w, int h)
 void LL4GLWidget::modelTransformPatricio ()
 {
   TG = glm::translate(glm::mat4(1.f), glm::vec3(5,0,2));
+  
+  TG = glm::translate(TG, glm::vec3(0,0,-3));
+
   TG = glm::scale(TG, glm::vec3(escala, escala, escala));
   TG = glm::translate(TG, -centreBasePatr);
   

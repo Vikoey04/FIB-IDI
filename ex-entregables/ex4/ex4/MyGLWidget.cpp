@@ -74,23 +74,115 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
     break;
 	}
   case Qt::Key_Right: {
-      // ...
+    rotacio -= 30;
+    modelTransformPatricio();
     break;
 	}
   case Qt::Key_Left: {
-      // ...
+    rotacio += 30;
+    modelTransformPatricio();
     break;
 	}
+  case Qt::Key_C: {
+    interruptorC();
+    break;
+  }
+  case Qt::Key_E: {
+    interruptorE();
+    break;
+  }
+  case Qt::Key_P: {
+    interruptorP();
+    break;
+  }
   default: LL4GLWidget::keyPressEvent(event); break;
   }
   update();
 }
 
-virtual void initializeGL() {
+void MyGLWidget::initializeGL() {
   LL4GLWidget::initializeGL();
 
-  posFocusLoc = glGetUniformLocation (program->programId(), "posFocus");
-  colFoscusLoc = glGetUniformLocation (program->programId(), "colFocus");
+  posFocLoc1 = glGetUniformLocation (program->programId(), "posFocus1");
+  colFocLoc1 = glGetUniformLocation (program->programId(), "colFocus1");
+  posFocLoc2 = glGetUniformLocation (program->programId(), "posFocus2");
+  colFocLoc2 = glGetUniformLocation (program->programId(), "colFocus2");
+  posFocLoc3 = glGetUniformLocation (program->programId(), "posFocus3");
+  colFocLoc3 = glGetUniformLocation (program->programId(), "colFocus3");
 
+  rotacio = 0.0;
+
+  C_ON = false;
+  E_ON = false;
+  P_ON = false;
+
+  veczero = glm::vec3(0.0, 0.0, 0.0);
+  col1 = glm::vec3(0.9, 0.0, 0.9);
+  col2 = glm::vec3(0.9, 0.9, 0.9);
+  col3 = glm::vec3(0.9, 0.9, 0.2);
+
+  glm::vec3 posF;
+  posF = glm::vec3(0.0, 0.0, 0.0);
+  glUniform3fv(posFocLoc1, 1, &posF[0]); // Focus de càmera
+  posF = glm::vec3(10.0, 3.0, 5.0);
+  glUniform3fv(posFocLoc2, 1, &posF[0]); // Focus d'escena
+
+  interruptorC();
+  interruptorE();
+  interruptorP();
+}
+
+// També fem la transformació del focusP (el del cap del Patricio)
+void MyGLWidget::modelTransformPatricio()
+{
+  TG = glm::translate(glm::mat4(1.f), glm::vec3(5,0,2));
+
+  TG = glm::translate(TG, glm::vec3(0,0,3));
+  TG = glm::rotate(TG, float(rotacio*M_PI/180.f), glm::vec3(0,1,0));
+  TG = glm::translate(TG, glm::vec3(0,0,-3));
+
+  //  Aprofitem la TG amb algunes transformacions per a calcular el
+  //  punt on ha d'anar el focus quan rotem el Patricio
+  glm::vec4 aux1 = TG * glm::vec4(glm::vec3(0, 3, 0), 1);
+  glm::vec3 aux2 = glm::vec3(aux1.x, aux1.y, aux1.z);     // Nova posició del focusP
+  glUniform3fv (posFocLoc3, 1, &aux2[0]);                 // Passem el valor al uniform
+  //---------------------------------------------------------------
+
+  TG = glm::scale(TG, glm::vec3(escala, escala, escala));
+  TG = glm::translate(TG, -centreBasePatr);
   
+  glUniformMatrix4fv (transLoc, 1, GL_FALSE, &TG[0][0]);
+}
+
+void MyGLWidget::interruptorC() {
+  if (C_ON) {
+    glUniform3fv (colFocLoc1, 1, &veczero[0]);
+    C_ON = false;
+  }
+  else {
+    glUniform3fv (colFocLoc1, 1, &col1[0]);
+    C_ON = true;
+  }
+}
+
+void MyGLWidget::interruptorE() {
+  if (E_ON) {
+    glUniform3fv (colFocLoc2, 1, &veczero[0]);
+    E_ON = false;
+  }
+  else {
+    glUniform3fv (colFocLoc2, 1, &col2[0]);
+    E_ON = true;
+  }
+}
+
+void MyGLWidget::interruptorP() {
+  if (P_ON) {
+    glUniform3fv (colFocLoc3, 1, &veczero[0]);
+    P_ON = false;
+  }
+  else {
+    glUniform3fv (colFocLoc3, 1, &col3[0]);
+    P_ON = true;
+  }
 }
