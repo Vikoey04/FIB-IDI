@@ -79,12 +79,30 @@ void MyGLWidget::paintGL ()   // Mètode que has de modificar
     // Pintem el cubs
     if (pintaCubs) {
       glBindVertexArray(VAO_Cub);
-      modelTransformCub (4.0, 0.0);
-      glDrawArrays(GL_TRIANGLES, 0, 36);
-      modelTransformCub (5.0, float(2*M_PI/3));
-      glDrawArrays(GL_TRIANGLES, 0, 36);
-      modelTransformCub (6.0, float(4*M_PI/3));
-      glDrawArrays(GL_TRIANGLES, 0, 36);
+      if (posPat == 1) {
+        modelTransformCub (4.0, 0.0);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        modelTransformCub (5.0, float(2*M_PI/3));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        modelTransformCub (6.0, float(4*M_PI/3));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+      }
+      else if (posPat == 2) {
+        modelTransformCub (6.0, 0.0);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        modelTransformCub (4.0, float(2*M_PI/3));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        modelTransformCub (5.0, float(4*M_PI/3));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+      }
+      else if (posPat == 3) {
+        modelTransformCub (5.0, 0.0);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        modelTransformCub (6.0, float(2*M_PI/3));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        modelTransformCub (4.0, float(4*M_PI/3));
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+      }
     }
 
     glBindVertexArray(0);
@@ -146,16 +164,9 @@ void MyGLWidget::viewTransform ()    // Mètode que has de modificar
   else
   {
     // Codi per a la viewMatrix de la Càmera-2
-    glm::mat4 Proj;
-    // left, right, bottom, top, ZNear, ZFar
-    if (ra < 1) {
-      Proj = glm::ortho(-radiEsc/ra, radiEsc/ra, -radiEsc*ra, radiEsc*ra, 0.f, 2*radiEsc);
-    }
-    else {
-      Proj = glm::ortho(-radiEsc/ra, radiEsc/ra, -radiEsc*ra, radiEsc*ra, 0.f, 2*radiEsc);
-    }
-
-    glUniformMatrix4fv (projLoc, 1, GL_FALSE, &Proj[0][0]);
+    // obs, vrp, up
+    View = lookAt(glm::vec3(0, 5, 0), glm::vec3(0, 0, 0), glm::vec3(1, 0, 0));
+    glUniformMatrix4fv (viewLoc, 1, GL_FALSE, &View[0][0]);
   }
 }
 
@@ -166,9 +177,15 @@ void MyGLWidget::projectTransform ()
   else
   {
     // Codi per a la projectMatrix de la Càmera-2
-    // obs, vrp, up
-    View = lookAt(glm::vec3(0, 5, 0), glm::vec3(0, 0, 0), glm::vec3(1, 0, 0));
-    glUniformMatrix4fv (viewLoc, 1, GL_FALSE, &View[0][0]);
+    glm::mat4 Proj;
+    // left, right, bottom, top, ZNear, ZFar
+    if (ra > 1) {
+      Proj = glm::ortho(-radiEsc*ra, radiEsc*ra, -radiEsc, radiEsc, 0.f, 2*radiEsc);
+    }
+    else {
+      Proj = glm::ortho(-radiEsc, radiEsc, -radiEsc/ra, radiEsc/ra, 0.f, 2*radiEsc);
+    }
+    glUniformMatrix4fv (projLoc, 1, GL_FALSE, &Proj[0][0]);
   }
 }
 
@@ -218,11 +235,17 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
     break;
 	}
   case Qt::Key_Right: {
-      // ...
+    if (posPat < 3) ++posPat;
+    else {
+      posPat = 1;
+    }
     break;
 	}
   case Qt::Key_Left: {
-      // ...
+    if (posPat > 1) --posPat;
+    else {
+      posPat = 3;
+    }
     break;
 	}
   case Qt::Key_R: {
