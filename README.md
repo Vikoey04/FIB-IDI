@@ -16,9 +16,10 @@
 - [Sessió 2](/lab/s2/)
     - [2.1](/lab/s2/part1/) ✔
     - [2.2](/lab/s2/part2/) ✔
-    - [2.3](/lab/s2/part3/) 
-    - [2.4](/lab/s2/part4/)
+    - [2.3](/lab/s2/part3/)
+    - [2.4](/lab/s2/part4/) ...
 - [Sessió 3](/lab/s3/)
-    - [3.1](/lab/s3/part1/)
+    - [3.1](/lab/s3/part1/) ...
     - [3.2](/lab/s3/part2/) ✔
-
+    - [3.3](/lab/s3/part3/) 
+- QT
