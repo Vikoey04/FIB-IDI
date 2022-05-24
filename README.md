@@ -23,3 +23,4 @@
     - [3.2](/lab/s3/part2/) ✔
     - [3.3](/lab/s3/part3/) 
 - QT
+- [Simulacre examen lab](/lab/simulacre) (Només falten els últims 2 exercicis)
