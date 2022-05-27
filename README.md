@@ -7,20 +7,47 @@
 - Laboratori Exercicis [(Link)](/lab/)
 - Exercicis Entregables (4/4) [(Link)](/ex-entregables/)
 
-### Laboratoris resolts (Jordi Soley)
-- [Sessió 0](/lab/s0/)
-- [Sessió 1](/lab/s1)
-    - [1.1](/lab/s1/part1/) ✔
-    - [1.2](/lab/s1/part2/) ✔
-    - [1.3](/lab/s1/part2/) ✔
-- [Sessió 2](/lab/s2/)
-    - [2.1](/lab/s2/part1/) ✔
-    - [2.2](/lab/s2/part2/) ✔
-    - [2.3](/lab/s2/part3/)
-    - [2.4](/lab/s2/part4/) ...
-- [Sessió 3](/lab/s3/)
-    - [3.1](/lab/s3/part1/) ...
-    - [3.2](/lab/s3/part2/) ✔
-    - [3.3](/lab/s3/part3/) 
+### Laboratoris resolts (Jordi Soley) 
+- [Sessió 0](/lab/s0/) Introducció a Qt ⚒ 
+
+- [Sessió 1](/lab/s1) OpenGL BLOC1
+    - [1.1](/lab/s1/part1/) ✔ 3h --- QOpenGLWidget i estructura VBO 
+    - [1.2](/lab/s1/part2/) ✔ 3h --- Shaders (Vertex + Fragment) 
+    - [1.3](/lab/s1/part2/) ✔ 4h --- Transformacions Geomètriqus + Interacció teclat 
+
+- [Sessió 2](/lab/s2/) OpenGL BLOC2
+    - [2.1](/lab/s2/part1/) ✔ 5h --- Transformacions de càmera i càrrega d'OBJs 
+    - [2.2](/lab/s2/part2/) ✔ 4h --- Objecte qualsevol i càmera ortogonal 
+    - [2.3](/lab/s2/part3/) ❌ 4h --- Euler i nova escena 
+    - [2.4](/lab/s2/part4/) ⚒ 4h --- Afegim elements d'interfície amb Qt
+    
+- [Sessió 3](/lab/s3/) OpenGL BLOC 3
+    - [3.1](/lab/s3/part1/) ⚒ 4h --- Il·luminació bàsica 
+    - [3.2](/lab/s3/part2/) ✔ 4h --- Més il·luminació 
+    - [3.3](/lab/s3/part3/) ⚒ 3h --- Jugant amb focus i objectes 
+     
 - QT
-- [Simulacre examen lab](/lab/simulacre) (Només falten els últims 2 exercicis)
+    - Sessió 1 : (La sessió 1 de Qt és la Sessió 2.4 del BLOC2)
+    - Sessió 2 : [Disseny amb Qt](/lab/s2qt)
+    
+- [SIMULACRE EXAMEN LAB](/lab/simulacre) (Només falten els últims 2 exercicis)
+
+### Exercicis Entregables
+- [Ex1](/ex-entregables/ex1) ❌
+- [Ex2](/ex-entregables/ex2) ✔
+- [Ex3](/ex-entregables/ex3) ⚒ 
+- [Ex4](/ex-entregables/ex4) ✔
+
+#### Llegenda
+✔ Acabt
+⚒ A mitges/per acabar
+❌ No fet
+
+### Informació Addicional
+- Model de colors
+<div align="center">
+    <img src="https://user-images.githubusercontent.com/86537658/170729148-bc6c3d6a-7ede-4ebf-ade0-1952be14116f.png" width="800px" ></img>
+</div>
+
+
+
