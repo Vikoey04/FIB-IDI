@@ -30,7 +30,9 @@
     - Sessió 1 : (La sessió 1 de Qt és la Sessió 2.4 del BLOC2)
     - Sessió 2 : [Disseny amb Qt](/lab/s2qt)
     
-- [SIMULACRE EXAMEN LAB](/lab/simulacre) (Només falten els últims 2 exercicis)
+- [Simulacre Examen LAB](/lab/simulacre) (Enunciat ExamLAB Q1 2020-2021)
+
+        Només falta l'exercici de Qt
 
 ### Exercicis Entregables
 - [Ex1](/ex-entregables/ex1) ❌
@@ -39,7 +41,7 @@
 - [Ex4](/ex-entregables/ex4) ✔
 
 #### Llegenda
-✔ Acabt
+✔ Acabat
 ⚒ A mitges/per acabar
 ❌ No fet
 
