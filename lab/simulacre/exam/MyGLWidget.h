@@ -26,5 +26,6 @@ class MyGLWidget:public ExamGLWidget
 
     bool pintaCubs;
     bool focusGroc;
-    int posPat; // 1, 2 o 3
+    int cubPat; // 1, 2 o 3 -> cub al que està associat el patricio
+    int posCubs;
 };

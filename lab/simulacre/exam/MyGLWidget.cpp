@@ -79,7 +79,7 @@ void MyGLWidget::paintGL ()   // Mètode que has de modificar
     // Pintem el cubs
     if (pintaCubs) {
       glBindVertexArray(VAO_Cub);
-      if (posPat == 1) {
+      if (posCubs == 1) {
         modelTransformCub (4.0, 0.0);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         modelTransformCub (5.0, float(2*M_PI/3));
@@ -87,7 +87,7 @@ void MyGLWidget::paintGL ()   // Mètode que has de modificar
         modelTransformCub (6.0, float(4*M_PI/3));
         glDrawArrays(GL_TRIANGLES, 0, 36);
       }
-      else if (posPat == 2) {
+      else if (posCubs == 2) {
         modelTransformCub (6.0, 0.0);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         modelTransformCub (4.0, float(2*M_PI/3));
@@ -95,7 +95,7 @@ void MyGLWidget::paintGL ()   // Mètode que has de modificar
         modelTransformCub (5.0, float(4*M_PI/3));
         glDrawArrays(GL_TRIANGLES, 0, 36);
       }
-      else if (posPat == 3) {
+      else if (posCubs == 3) {
         modelTransformCub (5.0, 0.0);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         modelTransformCub (6.0, float(2*M_PI/3));
@@ -109,10 +109,12 @@ void MyGLWidget::paintGL ()   // Mètode que has de modificar
 }
 
 void MyGLWidget::iniEscena() {
-  ExamGLWidget::iniEscena();
-
-  pintaCubs = false;
+  pintaCubs = true;
   focusGroc = false;
+  cubPat = 1;
+  posCubs = 1;
+
+  ExamGLWidget::iniEscena();
 }
 
 void MyGLWidget::enviaColFocus() {
@@ -142,12 +144,14 @@ void MyGLWidget::modelTransformPatricio ()    // Mètode que has de modificar
 {
   //ExamGLWidget::modelTransformPatricio ();
   TG = glm::mat4(1.f);
-  if (posPat == 2) {
+
+  if ((cubPat == 1 and posCubs == 2) or (cubPat == 2 and posCubs == 1) or (cubPat == 3 and posCubs == 3)) {
     TG = glm::rotate(TG, float(2*M_PI/3), glm::vec3(0, 1, 0));
   }
-  else if (posPat == 3) {
+  else if ((cubPat == 1 and posCubs == 3) or (cubPat == 2 and posCubs == 2) or (cubPat == 3 and posCubs == 1)) {
     TG = glm::rotate(TG, float(4*M_PI/3), glm::vec3(0, 1, 0));
   }
+  
   TG = glm::translate(TG, glm::vec3(5, 0, 1)); // per moure a la pos de Cub1
   TG = glm::rotate(TG, float(-M_PI/2), glm::vec3(1, 0, 0)); // per posarlo panxa amunt
   TG = glm::scale(TG, glm::vec3 (2*escala, 2*escala, 2*escala));
@@ -202,15 +206,15 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
     break;
 	}
   case Qt::Key_1: {
-    posPat = 1;
+    cubPat = 1;
     break;
 	}
   case Qt::Key_2: {
-    posPat = 2;
+    cubPat = 2;
     break;
 	}
   case Qt::Key_3: {
-    posPat = 3;
+    cubPat = 3;
     break;
 	}
   case Qt::Key_F: {
@@ -235,21 +239,22 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
     break;
 	}
   case Qt::Key_Right: {
-    if (posPat < 3) ++posPat;
+    if (posCubs < 3) ++posCubs;
     else {
-      posPat = 1;
+      posCubs = 1;
     }
     break;
 	}
   case Qt::Key_Left: {
-    if (posPat > 1) --posPat;
+    if (posCubs > 1) --posCubs;
     else {
-      posPat = 3;
+      posCubs = 3;
     }
     break;
 	}
-  case Qt::Key_R: {
-      // ...
+  case Qt::Key_R: { //Reset
+    iniEscena();
+    iniCamera();
     break;
 	}
   default: ExamGLWidget::keyPressEvent(event); break;
