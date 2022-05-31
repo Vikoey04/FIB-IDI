@@ -37,7 +37,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = examen1.0.0
-DISTDIR = /home/vikoey04/Documents/UPC/Q3/idi/FIB-IDI/lab/simulacre/exam/.tmp/examen1.0.0
+DISTDIR = /home/viko/Desktop/IDI/agit-idi/lab/simulacre/exam/.tmp/examen1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-O1
 LIBS          = $(SUBLIBS) /usr/lib/x86_64-linux-gnu/libQt5OpenGL.so /usr/lib/x86_64-linux-gnu/libQt5Widgets.so /usr/lib/x86_64-linux-gnu/libQt5Gui.so /usr/lib/x86_64-linux-gnu/libQt5Core.so /usr/lib/x86_64-linux-gnu/libGL.so -lpthread   
@@ -76,7 +76,6 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-base.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/qconfig.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_Baloo.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri \
@@ -170,7 +169,6 @@ Makefile: examen.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf 
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-base.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/qconfig.pri \
-		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_Baloo.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri \
@@ -248,7 +246,6 @@ Makefile: examen.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf 
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-base.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/g++-unix.conf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/qconfig.pri:
-/usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_Baloo.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_accessibility_support_private.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_bootstrap_private.pri:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/modules/qt_lib_concurrent.pri:
@@ -375,20 +372,20 @@ moc_MyForm.cpp: MyForm.h \
 		Model/model.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/vikoey04/Documents/UPC/Q3/idi/FIB-IDI/lab/simulacre/exam/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/vikoey04/Documents/UPC/Q3/idi/FIB-IDI/lab/simulacre/exam -I/usr/include/glm -I/home/vikoey04/Documents/UPC/Q3/idi/FIB-IDI/lab/simulacre/exam/Model -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include MyForm.h -o moc_MyForm.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/viko/Desktop/IDI/agit-idi/lab/simulacre/exam/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/viko/Desktop/IDI/agit-idi/lab/simulacre/exam -I/usr/include/glm -I/home/viko/Desktop/IDI/agit-idi/lab/simulacre/exam/Model -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include MyForm.h -o moc_MyForm.cpp
 
 moc_ExamGLWidget.cpp: ExamGLWidget.h \
 		Model/model.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/vikoey04/Documents/UPC/Q3/idi/FIB-IDI/lab/simulacre/exam/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/vikoey04/Documents/UPC/Q3/idi/FIB-IDI/lab/simulacre/exam -I/usr/include/glm -I/home/vikoey04/Documents/UPC/Q3/idi/FIB-IDI/lab/simulacre/exam/Model -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include ExamGLWidget.h -o moc_ExamGLWidget.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/viko/Desktop/IDI/agit-idi/lab/simulacre/exam/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/viko/Desktop/IDI/agit-idi/lab/simulacre/exam -I/usr/include/glm -I/home/viko/Desktop/IDI/agit-idi/lab/simulacre/exam/Model -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include ExamGLWidget.h -o moc_ExamGLWidget.cpp
 
 moc_MyGLWidget.cpp: MyGLWidget.h \
 		ExamGLWidget.h \
 		Model/model.h \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/vikoey04/Documents/UPC/Q3/idi/FIB-IDI/lab/simulacre/exam/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/vikoey04/Documents/UPC/Q3/idi/FIB-IDI/lab/simulacre/exam -I/usr/include/glm -I/home/vikoey04/Documents/UPC/Q3/idi/FIB-IDI/lab/simulacre/exam/Model -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include MyGLWidget.h -o moc_MyGLWidget.cpp
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/viko/Desktop/IDI/agit-idi/lab/simulacre/exam/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/viko/Desktop/IDI/agit-idi/lab/simulacre/exam -I/usr/include/glm -I/home/viko/Desktop/IDI/agit-idi/lab/simulacre/exam/Model -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtOpenGL -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/7 -I/usr/include/c++/7/x86_64-suse-linux -I/usr/include/c++/7/backward -I/usr/lib64/gcc/x86_64-suse-linux/7/include -I/usr/local/include -I/usr/lib64/gcc/x86_64-suse-linux/7/include-fixed -I/usr/x86_64-suse-linux/include -I/usr/include MyGLWidget.h -o moc_MyGLWidget.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:

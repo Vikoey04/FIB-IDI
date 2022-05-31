@@ -261,3 +261,37 @@ void MyGLWidget::keyPressEvent(QKeyEvent* event) {
   }
   update();
 }
+
+void MyGLWidget::cameraPlanta() {
+    makeCurrent();
+    camPlanta = true;
+    viewTransform();
+    projectTransform();
+    update();
+}
+
+void MyGLWidget::cameraCustom() {
+    makeCurrent();
+    camPlanta = false;
+    viewTransform();
+    projectTransform();
+    update();
+}
+
+void MyGLWidget::patCub1() {
+    makeCurrent();
+    cubPat = 1;
+    update();
+}
+
+void MyGLWidget::patCub2() {
+    makeCurrent();
+    cubPat = 2;
+    update();
+}
+
+void MyGLWidget::patCub3() {
+    makeCurrent();
+    cubPat = 3;
+    update();
+}

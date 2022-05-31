@@ -28,4 +28,12 @@ class MyGLWidget:public ExamGLWidget
     bool focusGroc;
     int cubPat; // 1, 2 o 3 -> cub al que està associat el patricio
     int posCubs;
+
+  public slots:
+    void cameraPlanta();
+    void cameraCustom();
+
+    void patCub1();
+    void patCub2();
+    void patCub3();
 };
