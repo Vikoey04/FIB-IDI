@@ -59,25 +59,10 @@ void MyGLWidget::iniEscena ()
   // Paràmetres de l'escena - arbitraris
   centreEsc = glm::vec3 (0, 0, 0);
   radiEsc = sqrt(20*20+10*10+2*2);
-  
-  //centreEsc = glm::vec3(15, 0, 12);
-  //radiEsc = sqrt( 15*15+12*12 * 2.5*2.5 );
 
   focCamera = true;
   altitud = 0;
   rotAvio = 0;
-
-/*
-  TGAvio = glm::mat4(1.f);
-  TGAvio = glm::translate(TGAvio, glm::vec3 (25, 0, 12));
-  TGAvio = glm::scale(TGAvio, glm::vec3 (1.5*escalaAvio, 1.5*escalaAvio, 1.5*escalaAvio));
-  TGAvio = glm::translate(TGAvio, glm::vec3(0, float(capsaAvioMax[1]), -float(capsaAvioMax[2]/2)));
-  posFoc = glm::vec3(float(capsaAvioMax[0]-capsaAvioMin[0]/2.0),float(capsaAvioMax[1]/2.f),float(capsaAvioMin[2]));
-
-  posFoc = glm::vec3(0, 0, 0);
-  glm::vec4 aux = TGAvio * glm::vec4(posFoc, 1.0);
-  posFoc = glm::vec3(aux[0], aux[1], aux[2]);
-  */
 }
 
 void MyGLWidget::iniMaterialTerra()
