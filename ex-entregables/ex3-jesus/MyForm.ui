@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MyForm</class>
+ <widget class="QWidget" name="MyForm">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>930</width>
+    <height>817</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Atzar</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout_3">
+   <item>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <widget class="MyQLCDNumber" name="lcdNumber">
+         <property name="mode">
+          <enum>QLCDNumber::Dec</enum>
+         </property>
+         <property name="segmentStyle">
+          <enum>QLCDNumber::Flat</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout">
+         <item>
+          <widget class="MyQPushButton" name="pushButton">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(124, 124, 124);</string>
+           </property>
+           <property name="text">
+            <string>1</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="MyQPushButton" name="pushButton_2">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(124, 124, 124);</string>
+           </property>
+           <property name="text">
+            <string>2</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="MyQPushButton" name="pushButton_3">
+           <property name="styleSheet">
+            <string notr="true">background-color: rgb(124, 124, 124);</string>
+           </property>
+           <property name="text">
+            <string>3</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <item>
+        <widget class="MyQPushButton" name="pushButton_4">
+         <property name="text">
+          <string>&amp;ST&amp;AR&amp;T</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+S</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_5">
+         <property name="text">
+          <string>&amp;RE&amp;ST&amp;AR&amp;T</string>
+         </property>
+         <property name="shortcut">
+          <string>Alt+R</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>MyQPushButton</class>
+   <extends>QPushButton</extends>
+   <header>MyQPushButton.h</header>
+   <slots>
+    <signal>incrementarTrios()</signal>
+    <signal>asigStart()</signal>
+    <signal>restartTOT()</signal>
+    <slot>assignarRand()</slot>
+    <slot>asignarStart()</slot>
+    <slot>RESTART()</slot>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>MyQLCDNumber</class>
+   <extends>QLCDNumber</extends>
+   <header>MyQLCDNumber.h</header>
+   <slots>
+    <slot>incrementarTrios()</slot>
+    <slot>zero()</slot>
+   </slots>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>clicked()</signal>
+   <receiver>pushButton_2</receiver>
+   <slot>assignarRand()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>613</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>613</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>pushButton_3</receiver>
+   <slot>assignarRand()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>917</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>917</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>incrementarTrios()</signal>
+   <receiver>lcdNumber</receiver>
+   <slot>incrementarTrios()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>613</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>433</x>
+     <y>138</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_3</sender>
+   <signal>incrementarTrios()</signal>
+   <receiver>lcdNumber</receiver>
+   <slot>incrementarTrios()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>917</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>449</x>
+     <y>138</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>pushButton</receiver>
+   <slot>asignarStart()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>386</x>
+     <y>621</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>115</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>asigStart()</signal>
+   <receiver>pushButton_2</receiver>
+   <slot>asignarStart()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>197</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>613</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_2</sender>
+   <signal>asigStart()</signal>
+   <receiver>pushButton_3</receiver>
+   <slot>assignarRand()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>613</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>917</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>pushButton_2</receiver>
+   <slot>RESTART()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>918</x>
+     <y>621</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>613</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>pushButton_3</receiver>
+   <slot>RESTART()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>918</x>
+     <y>621</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>917</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>lcdNumber</receiver>
+   <slot>zero()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>918</x>
+     <y>621</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>454</x>
+     <y>137</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>incrementarTrios()</signal>
+   <receiver>lcdNumber</receiver>
+   <slot>incrementarTrios()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>163</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>405</x>
+     <y>128</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>pushButton</receiver>
+   <slot>RESTART()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>918</x>
+     <y>621</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>192</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
+   <receiver>pushButton</receiver>
+   <slot>assignarRand()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>134</x>
+     <y>319</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>181</x>
+     <y>319</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
