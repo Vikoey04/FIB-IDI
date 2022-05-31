@@ -34,6 +34,12 @@
 
         Només falta l'exercici de Qt
 
+### Examens de Laboratori (Jordi Soley)
+ - [Examen Lab 2021-2022 Q1](/examens-lab/ProvaLab2122Q1) ✔
+ - [Examen Lab 2020-2021 Q2](/examens-lab/ProvaLab2021Q2)
+ - [Examen Lab 2020-2021 Q1](/examens-lab/ProvaLab2021Q1)
+ - [Examen Lab 2019-2020 Q2](/examens-lab/ProvaLab1920Q2)
+
 ### Exercicis Entregables
 - [Ex1](/ex-entregables/ex1) ❌
 - [Ex2](/ex-entregables/ex2) ✔
