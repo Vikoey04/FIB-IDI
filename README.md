@@ -30,14 +30,12 @@
     - Sessió 1 : (La sessió 1 de Qt és la Sessió 2.4 del BLOC2)
     - Sessió 2 : [Disseny amb Qt](/lab/s2qt)
     
-- [Simulacre Examen LAB](/lab/simulacre) (Enunciat ExamLAB Q1 2020-2021)
-
-        Només falta l'exercici de Qt
+- [Simulacre Examen LAB](/lab/simulacre) ✔ (Examen Lab Q1 2020-2021) 
 
 ### Examens de Laboratori (Jordi Soley)
  - [Examen Lab 2021-2022 Q1](/examens-lab/ProvaLab2122Q1) ✔ Patricio, hangar i avió que vola
  - [Examen Lab 2020-2021 Q2](/examens-lab/ProvaLab2021Q2)
- - [Examen Lab 2020-2021 Q1](/examens-lab/ProvaLab2021Q1)
+ - [Examen Lab 2020-2021 Q1](/lab/simulacre) ✔ Patricio i cubs
  - [Examen Lab 2019-2020 Q2](/examens-lab/ProvaLab1920Q2) (Només enunciat pdf)
 
 ### Exercicis Entregables
