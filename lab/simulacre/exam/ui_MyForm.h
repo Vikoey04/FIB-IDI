@@ -11,8 +11,10 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -26,6 +28,14 @@ public:
     QHBoxLayout *horizontalLayout;
     MyGLWidget *widget;
     QVBoxLayout *verticalLayout;
+    QRadioButton *radioButton;
+    QRadioButton *radioButton_2;
+    QSpacerItem *verticalSpacer_2;
+    QFrame *frame;
+    QVBoxLayout *verticalLayout_2;
+    QRadioButton *radioButton_3;
+    QRadioButton *radioButton_4;
+    QRadioButton *radioButton_5;
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton;
 
@@ -49,6 +59,44 @@ public:
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        radioButton = new QRadioButton(MyForm);
+        radioButton->setObjectName(QString::fromUtf8("radioButton"));
+
+        verticalLayout->addWidget(radioButton);
+
+        radioButton_2 = new QRadioButton(MyForm);
+        radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
+
+        verticalLayout->addWidget(radioButton_2);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_2);
+
+        frame = new QFrame(MyForm);
+        frame->setObjectName(QString::fromUtf8("frame"));
+        frame->setFrameShape(QFrame::StyledPanel);
+        frame->setFrameShadow(QFrame::Raised);
+        verticalLayout_2 = new QVBoxLayout(frame);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        radioButton_3 = new QRadioButton(frame);
+        radioButton_3->setObjectName(QString::fromUtf8("radioButton_3"));
+
+        verticalLayout_2->addWidget(radioButton_3);
+
+        radioButton_4 = new QRadioButton(frame);
+        radioButton_4->setObjectName(QString::fromUtf8("radioButton_4"));
+
+        verticalLayout_2->addWidget(radioButton_4);
+
+        radioButton_5 = new QRadioButton(frame);
+        radioButton_5->setObjectName(QString::fromUtf8("radioButton_5"));
+
+        verticalLayout_2->addWidget(radioButton_5);
+
+
+        verticalLayout->addWidget(frame);
+
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout->addItem(verticalSpacer);
@@ -69,6 +117,11 @@ public:
 
         retranslateUi(MyForm);
         QObject::connect(pushButton, SIGNAL(clicked()), MyForm, SLOT(close()));
+        QObject::connect(radioButton, SIGNAL(pressed()), widget, SLOT(cameraCustom()));
+        QObject::connect(radioButton_2, SIGNAL(pressed()), widget, SLOT(cameraPlanta()));
+        QObject::connect(radioButton_3, SIGNAL(clicked()), widget, SLOT(patCub1()));
+        QObject::connect(radioButton_4, SIGNAL(clicked()), widget, SLOT(patCub2()));
+        QObject::connect(radioButton_5, SIGNAL(clicked()), widget, SLOT(patCub3()));
 
         QMetaObject::connectSlotsByName(MyForm);
     } // setupUi
@@ -76,6 +129,11 @@ public:
     void retranslateUi(QWidget *MyForm)
     {
         MyForm->setWindowTitle(QApplication::translate("MyForm", "IDI-Lab", nullptr));
+        radioButton->setText(QApplication::translate("MyForm", "Cam Custom", nullptr));
+        radioButton_2->setText(QApplication::translate("MyForm", "Planta", nullptr));
+        radioButton_3->setText(QApplication::translate("MyForm", "Cub1", nullptr));
+        radioButton_4->setText(QApplication::translate("MyForm", "Cub2", nullptr));
+        radioButton_5->setText(QApplication::translate("MyForm", "Cub3", nullptr));
         pushButton->setText(QApplication::translate("MyForm", "&Sortir", nullptr));
     } // retranslateUi
 

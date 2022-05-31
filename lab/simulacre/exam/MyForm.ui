@@ -33,6 +33,66 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
+      <widget class="QRadioButton" name="radioButton">
+       <property name="text">
+        <string>Cam Custom</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QRadioButton" name="radioButton_2">
+       <property name="text">
+        <string>Planta</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="verticalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QFrame" name="frame">
+       <property name="frameShape">
+        <enum>QFrame::StyledPanel</enum>
+       </property>
+       <property name="frameShadow">
+        <enum>QFrame::Raised</enum>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QRadioButton" name="radioButton_3">
+          <property name="text">
+           <string>Cub1</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioButton_4">
+          <property name="text">
+           <string>Cub2</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="radioButton_5">
+          <property name="text">
+           <string>Cub3</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
@@ -68,6 +128,13 @@
    <extends>QWidget</extends>
    <header>MyGLWidget.h</header>
    <container>1</container>
+   <slots>
+    <slot>cameraPlanta()</slot>
+    <slot>cameraCustom()</slot>
+    <slot>patCub1()</slot>
+    <slot>patCub2()</slot>
+    <slot>patCub3()</slot>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources/>
@@ -79,12 +146,92 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>796</x>
-     <y>596</y>
+     <x>777</x>
+     <y>715</y>
     </hint>
     <hint type="destinationlabel">
      <x>839</x>
      <y>529</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton</sender>
+   <signal>pressed()</signal>
+   <receiver>widget</receiver>
+   <slot>cameraCustom()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>775</x>
+     <y>21</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>569</x>
+     <y>146</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_2</sender>
+   <signal>pressed()</signal>
+   <receiver>widget</receiver>
+   <slot>cameraPlanta()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>797</x>
+     <y>58</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>666</x>
+     <y>185</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_3</sender>
+   <signal>clicked()</signal>
+   <receiver>widget</receiver>
+   <slot>patCub1()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>750</x>
+     <y>342</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>532</x>
+     <y>235</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_4</sender>
+   <signal>clicked()</signal>
+   <receiver>widget</receiver>
+   <slot>patCub2()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>784</x>
+     <y>377</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>587</x>
+     <y>273</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>radioButton_5</sender>
+   <signal>clicked()</signal>
+   <receiver>widget</receiver>
+   <slot>patCub3()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>735</x>
+     <y>408</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>636</x>
+     <y>309</y>
     </hint>
    </hints>
   </connection>
