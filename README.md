@@ -24,7 +24,7 @@
 - [Sessió 3](/lab/s3/) OpenGL BLOC 3
     - [3.1](/lab/s3/part1/) ✔ 4h --- Il·luminació bàsica 
     - [3.2](/lab/s3/part2/) ✔ 4h --- Més il·luminació 
-    - [3.3](/lab/s3/part3/) ⚒ 3h --- Jugant amb focus i objectes 
+    - [3.3](/lab/s3/part3/) ✔ 3h --- Jugant amb focus i objectes 
      
 - QT
     - Sessió 1 : (La sessió 1 de Qt és la Sessió 2.4 del BLOC2)
