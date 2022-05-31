@@ -38,10 +38,11 @@
  - [Examen Lab 2020-2021 Q1](/lab/simulacre) ✔ Patricio i cubs
  - [Examen Lab 2019-2020 Q2](/examens-lab/ProvaLab1920Q2) (Només enunciat pdf)
 
-### Exercicis Entregables
+### Exercicis Entregables (Jordi Soley)
 - [Ex1](/ex-entregables/ex1) ❌
 - [Ex2](/ex-entregables/ex2) ✔
 - [Ex3](/ex-entregables/ex3) ⚒ 
+    - [Ex3](/ex-entregables/ex3-jesus)  fet per Jesus Andújar
 - [Ex4](/ex-entregables/ex4) ✔
 
 #### Llegenda
