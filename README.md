@@ -22,7 +22,7 @@
     - [2.4](/lab/s2/part4/) ⚒ 4h --- Afegim elements d'interfície amb Qt
     
 - [Sessió 3](/lab/s3/) OpenGL BLOC 3
-    - [3.1](/lab/s3/part1/) ⚒ 4h --- Il·luminació bàsica 
+    - [3.1](/lab/s3/part1/) ✔ 4h --- Il·luminació bàsica 
     - [3.2](/lab/s3/part2/) ✔ 4h --- Més il·luminació 
     - [3.3](/lab/s3/part3/) ⚒ 3h --- Jugant amb focus i objectes 
      
