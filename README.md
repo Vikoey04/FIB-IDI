@@ -42,7 +42,7 @@
 - [Ex1](/ex-entregables/ex1) ❌
 - [Ex2](/ex-entregables/ex2) ✔
 - [Ex3](/ex-entregables/ex3) ⚒ 
-    - [Ex3](/ex-entregables/ex3-jesus)  fet per Jesus Andújar
+    - [Ex3](/ex-entregables/ex3-jesus)  fet per [*@Txesu*](https://github.com/Txesu)
 - [Ex4](/ex-entregables/ex4) ✔
 
 #### Llegenda
